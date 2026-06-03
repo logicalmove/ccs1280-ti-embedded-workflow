@@ -1,0 +1,4 @@
+interface:
+  display_name: "CCS1280 TI Embedded Workflow"
+  short_description: "Analyze and use the local CCS 12.8.0 TI embedded toolchain."
+  default_prompt: "Use the CCS1280 TI embedded workflow to inspect the local CCS installation, identify TI toolchain capabilities, and plan safe build/debug/flash work."
