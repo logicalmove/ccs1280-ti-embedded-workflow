@@ -2,3 +2,7 @@
 Thumbs.db
 *.tmp
 *.log
+__pycache__/
+*.pyc
+.ccs_agent_logs/
+build/

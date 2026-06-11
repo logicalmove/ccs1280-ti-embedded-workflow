@@ -31,6 +31,29 @@ Use the local `C:\ti\ccs1280` tree as a verified TI embedded development environ
    ```
 4. For CCS projects, inspect `.ccsproject`, `.cproject`, `.project`, `.cmd`, `.ccxml`, source files, and generated `Debug\makefile` if build behavior matters.
 
+## Agent Control CLI and Web Console
+
+For safe local agent control, prefer the repository CLI and web console before ad hoc shell commands:
+
+```powershell
+python tools\ccs_agent_control\ccs_agent.py status
+python tools\ccs_agent_control\ccs_agent.py list-projects
+python tools\ccs_agent_control\ccs_agent.py inspect 8065_d9_board_test_ccs
+python tools\ccs_agent_control\ccs_agent.py build 8065_d9_board_test_ccs
+python tools\ccs_agent_control\ccs_agent.py import C:\path\to\ccs_project
+python tools\ccs_agent_control\ccs_agent.py read-expression 8065_d9_board_test_ccs PC
+python tools\ccs_agent_control\ccs_agent.py last-log
+python -m tools.ccs_agent_control.ccs_agent_ui
+```
+
+The CLI returns JSON for agent consumption. It supports these environment overrides:
+
+- `CCS_AGENT_BASE`
+- `CCS_AGENT_WORKSPACE`
+- `CCS_AGENT_LOG_DIR`
+
+Safety boundary: import uses CCS headless project import through `eclipsec.exe` and `com.ti.ccstudio.apps.projectImport`. Build uses a project Makefile when present, otherwise it falls back to CCS headless project build through `eclipsec.exe` and `com.ti.ccstudio.apps.projectBuild`. RAM load refuses FLASH `.out` files. Expression and Watch reads are limited to read-only symbol/register paths. The live DSS session is for RAM debug observation and target run/halt/reset; do not add flash erase/program or target writes without an explicit confirmation workflow.
+
 ## Capability Workflow
 
 ### Installation and Component Analysis
