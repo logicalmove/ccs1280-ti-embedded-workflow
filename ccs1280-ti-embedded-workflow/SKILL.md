@@ -101,3 +101,13 @@ When asked to document or preserve work:
 2. Write a concise Chinese engineering note if the user is working in Chinese.
 3. Keep generated reports on Desktop when requested.
 4. Commit/tag/push only in a real Git repo; if the skill directory is not a repo, create or use a separate repository for GitHub delivery.
+## Optimized Daily Loop
+
+For the 8065 dual-board IAP project, use `C:\f28035_gpio_zonghe\dual_board_iap\tools\workflow.ps1`.
+It defaults to the small target and supports `-Action plan|build|verify|test`,
+`-Target small|big|both`, and `-Force`. Logs are written under
+`build\workflow`. It never flashes hardware.
+
+From WSL2, call `tools/workflow.sh -Action plan -Target small`. The wrapper
+delegates TI compilation to Windows CCS and keeps Linux for scripts, logs, and
+analysis.
